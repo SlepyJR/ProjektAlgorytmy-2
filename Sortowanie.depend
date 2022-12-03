@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1670093423 source:x:\codeblocks\sortowanie\main.cpp
+	<iostream>
+	<vector>
+	<ctime>
+
