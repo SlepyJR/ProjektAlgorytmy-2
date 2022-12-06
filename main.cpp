@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 
+
 int pobieranie(const char* nazwa_pliku,int *tab, int rz)
 // Funkcja pobierajaca dane z pliku
 {
@@ -81,7 +82,8 @@ int mn_index;
   {
   	mn_index = i;
     for(int j=i+1;j<rz;j++)
-    //pętla wyszukuje najmniejszy element w podzbiorze nieposortowanym
+    //pętla wyszukuje najmniejszy
+    //element w podzbiorze nieposortowanym
     if(tab[j]<tab[mn_index])
       mn_index = j;
 
@@ -98,20 +100,20 @@ void testy(int *tab, int rz)
 		std::cout << "Tablica nie moze miec wartosci mniejszej od 0 lub rownej 0"<<std::endl;
 	}
 	else{
+            std::cout << "\n";
     std::cout << "Algorytm sortowania grzebieniowego:";
 	std::cout << "\n";
 	std::cout << "|";
-	/*for (int i = 0; i < rz; i++)
+	for (int i = 0; i < rz; i++)
 	{
 		std::cout << tab[i] << "|";
-		// Pêtla wypisuj¹ca indeksy oraz wartoœci tabeli "tab"
-	}*/
+		// Pêtla wypisuj¹ca wartoœci tabeli "tab"
+	}
     int tab2[rz];
         for (int i=0; i<rz; i++)
             {
                 tab2[i] = tab[i];
             }
-
 	auto begin = std::chrono::high_resolution_clock::now();
 	// Rozpoczêcie pomiaru czasu dzialania algorytmu
     combSort(tab,rz);
@@ -119,11 +121,12 @@ void testy(int *tab, int rz)
     auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
 
     std::cout << "\n";
-    /*for (int i = 0; i < rz; i++)
+    std::cout << "|";
+    for (int i = 0; i < rz; i++)
 	{
 		std::cout << tab[i] << "|";
-		// Pêtla wypisuj¹ca indeksy oraz wartoœci wektora "tab2"
-	}*/
+		// Pêtla wypisuj¹ca wartoœci wektora "tab2"
+	}
 	std::cout <<"\n";
 
 	std::cout << "Czas algorytmu:\n";
@@ -133,25 +136,30 @@ void testy(int *tab, int rz)
     std::cout << "Algorytm sortowania przez wstawianie:";
     std::cout << "\n";
     std::cout << "|";
-    /*for (int i = 0; i < rz; i++)
+    for (int i = 0; i < rz; i++)
 	{
 		std::cout << tab2[i] << "|";
-		// Pêtla wypisuj¹ca indeksy oraz wartoœci wektora "tablica"
-	}*/
+		// Pêtla wypisuj¹ca  wartoœci wektora "tablica"
+	}
 
 	auto start = std::chrono::high_resolution_clock::now();
 	selection_sort(tab2,rz);
 	auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(stop - start);
+    std::cout << "\n";
+    std::cout << "|";
+	for (int i = 0; i < rz; i++)
+	{
+		std::cout << tab2[i] << "|";
+		// Pêtla wypisujaca wartoœci tablicy "tab2"
+	}
+
 	std::cout << "\n";
 	std::cout << "Czas algorytmu:\n";
 	// Wyœwietlanie czasu dzialania algorytmu
     std::cout << (" %.3f seconds.\n", duration.count() * 1e-9);
-	/*for (int i = 0; i < rz; i++)
-	{
-		std::cout << tab2[i] << "|";
-		// Pêtla wypisujaca indeksy oraz wartoœci tablicy"tab2"
-	}*/
+    std::cout << "\n";
+
 }
 
 }
@@ -184,6 +192,8 @@ int main()
 	std::cout << "Wprowadz zadany rozmiar tablicy z liczbami: \n" <<std::endl;
 	std::cin >> rz;
 	int tab[rz];
+	int tab2[rz];
+	int rozmiar2 = pobieranie("tabliczka2.txt", tab2, rz);
     int rozmiar = pobieranie("tabliczka.txt", tab, rz);
     if(rozmiar==0)
     {
@@ -198,7 +208,62 @@ int main()
     }
     else
     {
-        std::cout <<"Dupa" ;
+        std::cout <<"Blad" ;
     }
     return 0;
 }
+
+
+
+
+
+
+/*Pseudokod funkcji sortującej grzebieniowo
+
+Funkcja void combSort()
+stwórz zmienną int gap = rz, tmp;
+stwórz bool swapped = true;
+
+dopóki gap > 1 i swapped
+{
+    gap = gap * 10/13;
+    jeśli gap ==0
+        zamian gap na 1
+    swapped = false;
+    dla (int i = 0; i + gap <rz; ++i)
+    {
+        jeśli (tab[i +gap] < tab[i])
+        stwórz zmienną tmp = tab[i];
+
+        tab[i] = tab[i + gap];
+        tab[i + gap] = tmp;
+        swapped = true;
+    }
+}
+*/
+
+
+
+/*Funkcja selection_sort Wprowadz int *tab, int rz
+{
+	wprowadz int mn_index;
+
+	dla int i = 0; i<rz-1;i++
+		{
+			przypisz i do mn_index;
+			dla int j=i+1;j<rz;j++
+
+			jesli tab[j]>tab[mn_index
+				przypisz j do mn_index
+		}
+		zamien najmniejszy element tab[i],
+		z  tab[mn_index]
+*/
+
+
+
+
+
+
+
+

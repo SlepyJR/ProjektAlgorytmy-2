@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1670265023 source:x:\codeblocks\sortowanie\main.cpp
+1670368019 source:x:\codeblocks\sortowanie\main.cpp
 	<iostream>
 	<vector>
 	<ctime>
